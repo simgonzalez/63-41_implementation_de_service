@@ -1,9 +1,9 @@
 package ch.heg.util.counter;
 
-public class UpperLimitedPositiveCounter  extends Counter{
+public class UpperLimitedPositiveSimpleCounter extends SimpleCounter {
     int maxValue;
 
-    public UpperLimitedPositiveCounter(int initialValue, int maxValue) throws CounterException {
+    public UpperLimitedPositiveSimpleCounter(int initialValue, int maxValue) throws CounterException {
         if(initialValue < 0 ){
         // lancer exception
             throw new CounterException("une valeur plus grande que 0 est attendue, votre valeur est : ("+initialValue+")");

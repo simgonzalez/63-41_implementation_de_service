@@ -1,5 +1,8 @@
 package ch.heg.util.admin;
 
+import lombok.Data;
+
+@Data
 public class Person {
 
     private String email;
@@ -8,14 +11,6 @@ public class Person {
     public Person(String email, String name) {
         this.email = email;
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
