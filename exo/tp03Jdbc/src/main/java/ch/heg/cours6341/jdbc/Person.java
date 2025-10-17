@@ -1,9 +1,12 @@
 package ch.heg.cours6341.jdbc;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Person {
-  private String email;
+  @Id private String email;
   private String name;
   private int age;
 
@@ -12,6 +15,8 @@ public class Person {
     this.name = name;
     this.age = age;
   }
+
+  public Person() {}
 
   public String getEmail() {
     return email;
