@@ -4,19 +4,23 @@ import javax.persistence.*;
 
 @Entity
 public class City {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String name;
-    Float area;
+    private String name;
+    private Float area;
+
     @ManyToOne
-    @JoinColumn(name = "id_country")
-    Country country;
+    @JoinColumn(name = "country_id")
+    private Country country;
 
     public City(String name) {
         this.name = name;
     }
+
+    public City() {}
 
     public void setArea(Float area) {
         this.area = area;

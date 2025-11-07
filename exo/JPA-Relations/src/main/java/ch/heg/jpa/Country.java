@@ -1,31 +1,44 @@
 package ch.heg.jpa;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
 
 @Entity
 public class Country {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String name;
+    private String name;
+    private Long nbHabitants;
 
-    Long nbHabitants;
+    @OneToMany(mappedBy = "country", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+    private List<City> cities = new ArrayList<>();
 
-    @OneToMany (mappedBy = "country", cascade = CascadeType.PERSIST)
-    List<City> cities = new ArrayList<>();
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+    private Government government;
 
-    public Country(String name) {
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+    @JoinColumn(name = "capital_id")
+    private City capital;
+
+    public Country(String name, City capital) {
         this.name = name;
+        this.addCity(capital);
+        this.capital = capital;
     }
 
-    public void add(City city) {
+    public Country() {}
+
+    public void addCity(City city) {
         city.setCountry(this);
         cities.add(city);
-
     }
 
-
+    public void setGovernment(Government government) {
+        government.setCountry(this);
+        this.government = government;
+    }
 }
