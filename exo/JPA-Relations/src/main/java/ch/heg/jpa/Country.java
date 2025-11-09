@@ -11,6 +11,7 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String name;
     private Long nbHabitants;
 
@@ -18,6 +19,7 @@ public class Country {
     private List<City> cities = new ArrayList<>();
 
     @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+    @JoinColumn(name = "government_id")
     private Government government;
 
     @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
