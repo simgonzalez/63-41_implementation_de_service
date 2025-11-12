@@ -1,14 +1,12 @@
 package ch.heg.jpa;
 
+import static org.junit.Assert.*;
+
+import java.util.NoSuchElementException;
+import javax.persistence.EntityManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import javax.persistence.EntityManager;
-
-import java.util.NoSuchElementException;
-
-import static org.junit.Assert.*;
 
 public class GeoServiceTest {
 
@@ -130,9 +128,9 @@ public class GeoServiceTest {
         GeoService.insertCountry(testCountry);
         EntityManager em = GeoService.emf.createEntityManager();
         City foundCity = em
-                .createQuery("SELECT c FROM City c WHERE c.name = :name", City.class)
-                .setParameter("name", TEST_CITY_NAME)
-                .getSingleResult();
+            .createQuery("SELECT c FROM City c WHERE c.name = :name", City.class)
+            .setParameter("name", TEST_CITY_NAME)
+            .getSingleResult();
         em.close();
 
         foundCity.setArea(UPDATED_CITY_AREA);
@@ -140,9 +138,9 @@ public class GeoServiceTest {
 
         EntityManager em2 = GeoService.emf.createEntityManager();
         City updatedCity = em2
-                .createQuery("SELECT c FROM City c WHERE c.name = :name", City.class)
-                .setParameter("name", TEST_CITY_NAME)
-                .getSingleResult();
+            .createQuery("SELECT c FROM City c WHERE c.name = :name", City.class)
+            .setParameter("name", TEST_CITY_NAME)
+            .getSingleResult();
         em2.close();
 
         assertNotNull(updatedCity);
@@ -247,18 +245,18 @@ public class GeoServiceTest {
         GeoService.insertCountry(testCountry);
         EntityManager em = GeoService.emf.createEntityManager();
         City foundCity = em
-                .createQuery("SELECT c FROM City c WHERE c.name = :name", City.class)
-                .setParameter("name", TEST_CITY_NAME)
-                .getSingleResult();
+            .createQuery("SELECT c FROM City c WHERE c.name = :name", City.class)
+            .setParameter("name", TEST_CITY_NAME)
+            .getSingleResult();
         em.close();
 
         GeoService.updateCity(foundCity);
 
         EntityManager em2 = GeoService.emf.createEntityManager();
         City updatedCity = em2
-                .createQuery("SELECT c FROM City c WHERE c.name = :name", City.class)
-                .setParameter("name", TEST_CITY_NAME)
-                .getSingleResult();
+            .createQuery("SELECT c FROM City c WHERE c.name = :name", City.class)
+            .setParameter("name", TEST_CITY_NAME)
+            .getSingleResult();
         em2.close();
 
         assertNotNull(updatedCity);
