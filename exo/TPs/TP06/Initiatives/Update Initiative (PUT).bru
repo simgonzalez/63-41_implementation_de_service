@@ -1,0 +1,29 @@
+meta {
+  name: Update Initiative (PUT)
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/app/initiatives
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": 1,
+    "titre": "Titre modifié",
+    "created": [2025, 7, 29],
+    "noSignature": 3100,
+    "status": "ACCEPTEE"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,28 @@
+meta {
+  name: Create Initiative (POST)
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/app/initiatives
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "titre": "Pour une aide et une protection en faveur des personnes en fuite financées par des dons (initiative sur l’aide aux personnes en fuite)",
+    "created": [2025, 7, 29],
+    "noSignature": 3000,
+    "status": "EN_COURS"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

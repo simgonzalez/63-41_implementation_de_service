@@ -1,0 +1,105 @@
+### Variables globales
+@host = localhost
+@port = 8080
+@context = tp6
+@writepath = write
+
+### GET - Liste de toutes les initiatives
+GET http://{{host}}:{{port}}/{{context}}/initiatives
+Accept: application/json
+
+
+
+### POST - Créer initiative 1
+POST http://{{host}}:{{port}}/{{context}}/{{writepath}}/initiative
+Content-Type: application/json
+INITIATIVE_TOKEN: 12345
+
+{
+  "titre": "Pour la protection contre les rayonnements nuisibles! (initiative ondes millimétriques)",
+  "description": "Initiative demandant un contrôle renforcé des ondes millimétriques et l'application du principe de précaution.",
+  "dateDepot": "2025-10-28",
+  "statut": "EN_COURS_DE_COLLECTE"
+}
+
+### POST - Créer initiative 2
+POST http://{{host}}:{{port}}/{{context}}/{{writepath}}/initiative
+Content-Type: application/json
+INITIATIVE_TOKEN: 12345
+
+
+{
+  "titre": "Pour la reconnaissance de l'État de Palestine",
+  "description": "Initiative demandant la reconnaissance de l'État de Palestine par la Suisse.",
+  "dateDepot": "2025-09-30",
+  "statut": "EN_COURS_DE_COLLECTE"
+}
+
+### POST - Créer initiative 3
+POST http://{{host}}:{{port}}/{{context}}/{{writepath}}/initiative
+Content-Type: application/json
+INITIATIVE_TOKEN: 12345
+
+{
+  "titre": "Pour une aide et une protection en faveur des personnes en fuite financées par des dons (initiative sur l'aide aux personnes en fuite)",
+  "description": "Initiative proposant que des particuliers puissent parrainer et prendre en charge des personnes en fuite via des dons, avec des conditions et sûretés.",
+  "dateDepot": "2025-07-29",
+  "statut": "EN_COURS_DE_COLLECTE"
+}
+
+### GET - Liste de toutes les initiatives
+GET http://{{host}}:{{port}}/{{context}}/initiatives
+Accept: application/json
+
+
+### GET - Détail initiative 1
+GET http://{{host}}:{{port}}/{{context}}/initiatives?id=1
+Accept: application/json
+
+### PUT - Modifier initiative 1
+PUT http://{{host}}:{{port}}/{{context}}/{{writepath}}/initiative
+Content-Type: application/json
+INITIATIVE_TOKEN: 12345
+
+{
+  "id": 1,
+  "titre": "Pour la protection contre les rayonnements nuisibles! - modifiée",
+  "description": "Description mise à jour de l'initiative sur les ondes millimétriques.",
+  "dateDepot": "2025-10-28",
+  "statut": "SOUMISE_AU_CONSEIL_FEDERAL",
+  "version": 0
+}
+
+### GET - Vérifier modification initiative 1
+GET http://{{host}}:{{port}}/{{context}}/initiatives?id=1
+Accept: application/json
+
+
+### PUT - Modifier initiative 2
+PUT http://{{host}}:{{port}}/{{context}}/{{writepath}}/initiative?id=1
+Content-Type: application/json
+INITIATIVE_TOKEN: "12345"
+
+{
+  "titre": "Pour la reconnaissance de l'État de Palestine - modifiée",
+  "description": "Description mise à jour de l'initiative pour la reconnaissance de l'État de Palestine.",
+  "dateDepot": "2025-09-30",
+  "statut": "SOUMISE_AU_VOTE"
+}
+
+### GET - Vérifier modification initiative 2
+GET http://{{host}}:{{port}}/{{context}}/initiatives?id=2
+Accept: application/json
+
+
+### DELETE - Supprimer initiative 3
+DELETE http://{{host}}:{{port}}/{{context}}/{{writepath}}/initiative?id=2
+INITIATIVE_TOKEN: 12345
+
+
+### GET - Vérifier suppression initiative 3
+GET http://{{host}}:{{port}}/{{context}}/initiatives?id=3
+Accept: application/json
+
+### DELETE - without token
+DELETE http://{{host}}:{{port}}/{{context}}/{{writepath}}/initiative?id=2
